@@ -1,0 +1,78 @@
+:root{
+  --void:#01070c;
+  --grid:#0b2b38;
+  --holo:#4fe3ff;
+  --holo-soft:rgba(79,227,255,.28);
+  --deep:#0b3a4a;
+  --hostile:#ff3d7f;
+  --data:#ffc857;
+  --ghost:#d8fbff;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--void);overflow:hidden;font-family:var(--mono)}
+body{display:grid;place-items:center;color:var(--ghost)}
+
+#stage{position:relative;width:100vw;height:100vh;overflow:hidden;cursor:crosshair}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+/* ---- atmosphere ---- */
+#scan{position:absolute;inset:0;pointer-events:none;z-index:5;
+  background:repeating-linear-gradient(to bottom,rgba(79,227,255,.045) 0 1px,transparent 1px 3px);
+  mix-blend-mode:screen}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:6;
+  background:radial-gradient(ellipse at center,transparent 45%,rgba(1,7,12,.85) 100%)}
+#damage{position:absolute;inset:0;pointer-events:none;z-index:7;opacity:0;
+  box-shadow:inset 0 0 140px 30px rgba(255,61,127,.75);transition:opacity .12s linear}
+
+/* ---- HUD ---- */
+.hud{position:absolute;z-index:8;pointer-events:none;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+
+#top{top:0;left:0;right:0;padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.panel{border:1px solid var(--holo-soft);background:rgba(2,20,28,.55);backdrop-filter:blur(2px);
+  padding:10px 14px;position:relative}
+.panel::before,.panel::after{content:'';position:absolute;width:7px;height:7px;border:1px solid var(--holo)}
+.panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.lbl{color:rgba(79,227,255,.55);font-size:9px;letter-spacing:.3em}
+.val{color:var(--holo);font-size:16px;letter-spacing:.1em;margin-top:3px;
+  text-shadow:0 0 12px rgba(79,227,255,.7)}
+.val.warn{color:var(--hostile);text-shadow:0 0 12px rgba(255,61,127,.7)}
+
+#bar{width:150px;height:5px;margin-top:7px;border:1px solid var(--holo-soft);position:relative}
+#barfill{position:absolute;inset:1px;width:100%;transform-origin:left;background:var(--holo);
+  box-shadow:0 0 10px var(--holo);transition:transform .18s ease-out}
+#barfill.warn{background:var(--hostile);box-shadow:0 0 10px var(--hostile)}
+
+#cores{display:flex;gap:5px;margin-top:7px}
+.core{width:15px;height:15px;border:1px solid rgba(255,200,87,.35);transform:rotate(45deg)}
+.core.on{background:var(--data);border-color:var(--data);box-shadow:0 0 10px var(--data)}
+
+#log{position:absolute;left:20px;bottom:20px;z-index:8;max-width:min(52vw,420px)}
+#log div{color:var(--holo);opacity:.8;font-size:10.5px;letter-spacing:.16em;margin-top:3px;
+  text-shadow:0 0 8px rgba(79,227,255,.5)}
+#log div.alert{color:var(--hostile);text-shadow:0 0 8px rgba(255,61,127,.6)}
+#log div.good{color:var(--data);text-shadow:0 0 8px rgba(255,200,87,.6)}
+
+#keys{position:absolute;right:20px;bottom:20px;z-index:8;text-align:right;
+  color:rgba(79,227,255,.4);font-size:9.5px;letter-spacing:.22em;line-height:1.8}
+#keys b{color:var(--holo);font-weight:400}
+
+/* ---- overlays ---- */
+#veil{position:absolute;inset:0;z-index:20;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(ellipse at center,rgba(1,7,12,.86),rgba(1,7,12,.98));padding:24px}
+#veil.hide{display:none}
+#veil h1{font-size:clamp(26px,6vw,52px);font-weight:400;letter-spacing:.42em;color:var(--holo);
+  text-shadow:0 0 26px rgba(79,227,255,.65);margin-left:.42em}
+#veil h1.bad{color:var(--hostile);text-shadow:0 0 26px rgba(255,61,127,.6)}
+#veil h1.good{color:var(--data);text-shadow:0 0 26px rgba(255,200,87,.6)}
+#veil p{margin-top:18px;font-size:11.5px;letter-spacing:.2em;line-height:2.1;
+  color:rgba(216,251,255,.62);text-transform:uppercase;max-width:44ch}
+#veil button{margin-top:30px;background:transparent;color:var(--holo);border:1px solid var(--holo);
+  padding:12px 34px;font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  cursor:pointer;transition:.18s}
+#veil button:hover,#veil button:focus-visible{background:var(--holo);color:var(--void);
+  box-shadow:0 0 28px rgba(79,227,255,.65);outline:none}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

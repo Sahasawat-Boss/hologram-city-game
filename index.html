@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>SECTOR 7 — Hologram Recon</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="scan"></div><div id="vignette"></div><div id="damage"></div>
+
+  <div class="hud" id="top">
+    <div class="panel">
+      <div class="lbl">Suit integrity</div>
+      <div class="val" id="hpv">100%</div>
+      <div id="bar"><div id="barfill"></div></div>
+    </div>
+    <div class="panel" style="text-align:center">
+      <div class="lbl">Data cores</div>
+      <div id="cores"></div>
+    </div>
+    <div class="panel" style="text-align:right">
+      <div class="lbl">Pulse scan</div>
+      <div class="val" id="scanv">READY</div>
+    </div>
+  </div>
+
+  <div id="log"></div>
+  <div id="keys"><b>CLICK</b> move &nbsp;·&nbsp; <b>SPACE</b> pulse scan &nbsp;·&nbsp; <b>R</b> restart</div>
+
+  <div id="veil">
+    <div>
+      <h1 id="vtitle">SECTOR 7</h1>
+      <p id="vtext">
+        เมืองร้างหลังเหตุการณ์ blackout · เก็บ data core ให้ครบ 5 ชิ้น แล้วไปยัง extraction pad<br><br>
+        คลิกเพื่อเดิน · หลบ <span style="color:#ff3d7f">stalker</span> ให้พ้นกรวยสายตา · กำแพงบังสายตาได้
+      </p>
+      <button id="vbtn">เริ่มภารกิจ</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
