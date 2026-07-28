@@ -1,5 +1,7 @@
 # SECTOR 7 — Hologram Recon
 
+<img width="1907" height="951" alt="image" src="https://github.com/user-attachments/assets/0a30dcb6-a876-40e0-b1c6-314c9ab10a7a" />
+
 เกม stealth top-down บนแผนที่เมืองร้างที่สุ่มใหม่ทุกรอบ เรนเดอร์ด้วย Canvas 2D ล้วน
 ไม่มี dependency ภายนอก ไม่มี build step
 
